@@ -1,0 +1,5 @@
+selfcheck/
+http/
+wheels/
+venv/
+*.pb

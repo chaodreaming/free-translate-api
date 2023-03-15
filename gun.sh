@@ -1,0 +1,1 @@
+gunicorn -w 2 --threads 2 -b 0.0.0.0:6006 -t 1800 app:app
