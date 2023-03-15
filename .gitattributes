@@ -1,0 +1,8 @@
+# this drop notebooks from GitHub language stats
+*.ipynb linguist-vendored
+*.txt linguist-language=python
+*.sh linguist-language=python
+*.png linguist-language=python
+*.json linguist-language=python
+*.md linguist-language=python
+
