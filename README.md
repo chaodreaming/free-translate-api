@@ -1,7 +1,6 @@
 # free-translate-api
 
-提供免费翻译模型，效果近乎媲美谷歌，无限字符，可本地构建翻译api，支持中文，英语，法语，俄语，西班牙语语言互译。
-
+Provide free translation model, the effect is nearly comparable to Google, unlimited characters, can build translation api locally, support Chinese, English, French, Russian, Spanish language translation each other.
 
 ```bash
 # install
@@ -13,15 +12,15 @@ gunicorn -w 2 --threads 2 -b 0.0.0.0:6006 -t 1800 app:app
 
 ```
 
-默认直接运行python3 app.py为英译中，修改app.py中supertranslate初始化参数（模型存放文件夹）即可自定义语言
+Default direct run python3 app.py for English to Chinese translation, modify the supertranslate initialization parameter in app.py (model storage folder) to customize the language
 
-默认端口为6006，访问示例可参考test.py
+The default port is 6006, please refer to test.py for access examples
 
-支持并行翻译，长段落有多句的建议自行拆分，多句话和超过128个token可能出现漏译的情况
+Support parallel translation, long paragraphs with multiple sentences are recommended to split by themselves, multiple sentences and more than 128 tokens may appear to miss the translation
 
 ![img.png](img.png)
-模型来自于modelscope，https://github.com/modelscope/modelscope
+Models from modelscope，https://github.com/modelscope/modelscope
 
-尤其感谢魏相鹏提供的帮助，https://github.com/pemywei/csanmt
+Special thanks to Wei Xiangpeng for his help，https://github.com/pemywei/csanmt
 
-本项目适合有一定算力并且有翻译需求的人，该项目基于modelscope提供的模型搭建翻译api。
+This project is suitable for people who have some computing power and have translation needs. The project is based on the modelscope provided by the model to build the translation api.
