@@ -8,7 +8,12 @@
 
 本项目适合有一定算力并且有翻译需求的人，该项目基于modelscope提供的模型搭建翻译api。
 
-运行方法：将相应的pb文件下载到damo路径下相应的文件夹中
+```bash
+# install
+pip install -r requirements.txt
+# run app
+python3 app.py
+```
 
 默认直接运行python3 app.py为英译中，修改app.py中supertranslate初始化参数（模型存放文件夹）即可自定义语言
 
