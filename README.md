@@ -27,15 +27,15 @@ Special thanks to Wei Xiangpeng for his help，https://github.com/pemywei/csanmt
 
 This project is suitable for people who have some computing power and have translation needs. The project is based on the modelscope provided by the model to build the translation api.
 
-## 数据评估及结果
+## Data Evaluation and Results
 |  Backbone |#Params|  WMT18-20 (NLTK_BLEU)| IWSLT 16-17 (NLTK_BLEU) |    Remark   |
 |:---------:|:-----:|:--------------------:|:-----------------------:|:-----------:|
 |     -     |   -   |         31.3         |          19.8           |    Google   |
 | 24-6-1024 | 570M  |         29.8         |          19.8           |  ModelScope |
 
 
-## 论文引用
-如果你觉得这个该模型对有所帮助，请考虑引用下面的相关的论文：
+## Paper Citation
+If you think this model would be helpful, please consider citing the following related paper：
 ``` bibtex
 @inproceedings{wei-etal-2022-learning,
   title = {Learning to Generalize to More: Continuous Semantic Augmentation for Neural Machine Translation},
