@@ -6,6 +6,10 @@ from sacremoses import MosesDetokenizer, MosesPunctNormalizer, MosesTokenizer
 from subword_nmt import apply_bpe
 import  tensorflow as tf
 import numpy as np
+import os.path
+from huggingface_hub import hf_hub_url
+import requests
+from tqdm import tqdm
 if tf.__version__ >= '2.0':
     tf = tf.compat.v1
     tf.disable_eager_execution()
@@ -13,6 +17,7 @@ if tf.__version__ >= '2.0':
 class supertranslate():
     def __init__(self, model_dir):
         self.model_dir=model_dir
+        self.check_model(os.path.basename(self.model_dir))
         self.config=os.path.join(self.model_dir,"configuration.json")
         with open(self.config) as f:
             self.config_data=json.load(f)
@@ -118,6 +123,23 @@ class supertranslate():
         input_dict = self.preprocess(input_sequence)
         trans_ids = self.trans_sess.run("NmtModel/strided_slice_9:0",
                                         feed_dict={"input_wids:0": input_dict['input_ids']})
-        return self.postprocess({"output_seqs": trans_ids})
+        result=self.postprocess({"output_seqs": trans_ids})
+        result["src"]=input_sequence
+        return result
+    def check_model(self,modelname, chunk_size=1024 * 4):
+        file_name = modelname + ".pb"
+        file_path = os.path.join("models/damo/"+modelname, file_name)
+        if not os.path.exists(file_path):
+            print("Model not found, waiting to download...")
+            file_url = hf_hub_url(repo_id="chaodreaming/modelscope-csanmt-pb-inference",
+                                  filename=file_name)
 
-
+            file_size = int(requests.head(file_url).headers["content-length"])
+            res = requests.get(file_url, stream=True)
+            pbar = tqdm(total=file_size, unit="B", unit_scale=True)
+            with open(file_path, 'wb') as file:
+                for chunk in res.iter_content(chunk_size=chunk_size):
+                    file.write(chunk)
+                    pbar.update(len(chunk))
+                pbar.close()
+                print("Model download completed, waiting for initialization")

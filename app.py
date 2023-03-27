@@ -3,7 +3,7 @@ from flask import Flask, request
 import json
 from untils import supertranslate
 app = Flask(__name__)
-trans=supertranslate("models/damo/nlp_csanmt_translation_en2zh_base")
+trans=supertranslate(model_dir="models/damo/nlp_csanmt_translation_en2zh_base")
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -17,7 +17,7 @@ def predict():
         trans_result = trans.translate(textlists)
         print(time.time() - t1)
         print(trans_result,flush=True)
-        res.append(trans_result["translation"])
+        res.append(trans_result)
     return json.dumps({'prediction': res})
 if __name__ == '__main__':
     app.run(threaded=False,port=6006,debug=False)

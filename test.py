@@ -1,8 +1,8 @@
 import requests
 import json
 import time
-textlists="This is a very good project"
-params={"textlists":[textlists]}
+textlists=["This is a very good project","So do I"]
+params={"textlists":textlists}
 t1=time.time()
 url="http://127.0.0.1:6006/predict"
 res=requests.post(url, data=json.dumps(params))
